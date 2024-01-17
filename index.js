@@ -42,7 +42,7 @@ app.post('/register', async (req, res) => {
   }
 });
 
-app.post('/signup', async (req, res) => {
+app.post('/api/user/signup', async (req, res) => {
   try {
     const { name, email, password } = req.body;
 
@@ -55,9 +55,12 @@ app.post('/signup', async (req, res) => {
     res.status(201).json({ message: 'User registered successfully' });
   } catch (error) {
     console.error('Error during signup:', error);
-    res.status(500).json({ message: 'Internal server error' });
+
+    // Return a more detailed error response
+    res.status(500).json({ error: 'Internal server error', details: error.message });
   }
 });
+
 
 // app.use('/api/user', userRoutes);
 app.use('/video', videoRoutes);
