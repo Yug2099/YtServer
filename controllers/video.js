@@ -29,3 +29,24 @@ export const getAllvideos= async (req, res)=>{
     res.status(404).send(error.message)
   }
 }
+
+const deleteVideo = async (req, res) => {
+  try {
+    const { videoId } = req.params;
+
+    // Using findByIdAndRemove to delete the video by ID
+    const deletedVideo = await videoFiles.findByIdAndRemove(videoId);
+
+    if (!deletedVideo) {
+      // If the video with the specified ID is not found
+      return res.status(404).json({ error: 'Video not found' });
+    }
+
+    res.status(200).json({ message: 'Video deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting video:', error);
+    res.status(500).json({ error: 'Internal server error', details: error.message });
+  }
+};
+
+export { deleteVideo };

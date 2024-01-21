@@ -1,5 +1,6 @@
 import express from 'express'
-
+// import express from 'express';
+import { deleteVideo } from '../controllers/video.js';
 import {uploadVideo,getAllvideos} from '../controllers/video.js'
 import {likeController} from '../controllers/like.js'
 import {viewController} from '../controllers/views.js'
@@ -28,5 +29,6 @@ routes.delete('/deleteWatchlater/:videoId/:Viewer',auth,deletewatchLaterControll
 routes.post('/History',auth,HistoryController)
 routes.get('/getAllHistory',getAllHistoryController)
 routes.delete('/deleteHistory/:userId',auth,deleteHistoryController)
+routes.delete('/:videoId', deleteVideo);
 
 export default routes;
