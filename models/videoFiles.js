@@ -37,6 +37,11 @@ const videoFileSchema = new mongoose.Schema(
     Uploder: {
       type: String,
     },
+    visibility: {
+      type: String, // Assuming visibility is a string field (public, private, etc.)
+      required: true,
+      default: 'public', // You can set a default value if needed
+    },
   },
   {
     timestamps: true,
